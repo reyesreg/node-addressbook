@@ -76,11 +76,14 @@
                 </div>
                 <ul class="list-group">
                     <% for(var i = 0; i < person.length; i++) { %>
-                        <li class="list-group-item">
-                            <p><strong>Name:</strong> <%= person[i].name %></p>
-                            <p><strong>Email:</strong> <%= person[i].email %></p>
-                            <p><strong>Contact No:</strong> <%= person[i].contact %></p>
-                            <p><strong>Address:</strong> <%= person[i].address %></p>
+                        <li class="list-group-item" style="padding:0;">
+                            <div style="padding: 10px;">
+                                <div style="position: absolute; top: 0; right: 0; background-color: gainsboro; height: 26px; width: 30px; text-align: center;">x</div>
+                                <p><strong>Name:</strong> <%= person[i].name %></p>
+                                <p><strong>Email:</strong> <%= person[i].email %></p>
+                                <p><strong>Contact No:</strong> <%= person[i].contact %></p>
+                                <p><strong>Address:</strong> <%= person[i].address %></p>
+                            </div>
                         </li>
                     <%}%>
 
@@ -88,6 +91,6 @@
             </div>
         </div>
     </div>
-</div>
+</div>t
 </body>
 </html>
