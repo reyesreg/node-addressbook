@@ -1,8 +1,68 @@
+
+
 body {
     padding: 20px;
-    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    font-family: 'Hind', sans-serif;
+    background-color: rgb(240, 173, 78);
 }
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: Bebas, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titleText {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.titleDiv {
+    background-color: rgb(240, 173, 78);
+    padding: 20px;
+}
+
+.panel, .panel-heading, .btn, .form-control {
+    border-radius: 0px;
+    border: none;
+}
+
+.form-control, .infoDiv {
+    background-color: #f2f2f2;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #d8d8d8;
+    padding: 8px 10px 8px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.editButton {
+    position: absolute;
+    top: 0;
+    right: 33px;
+    color: #d8d8d8;
+    padding: 8px 10px 8px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.closeButton:hover{
+    color: #db6969;
+}
+
+.editButton:hover {
+    color: rgb(51, 122, 183)
 }

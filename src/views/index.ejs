@@ -15,17 +15,21 @@
     <link rel="stylesheet" href="/css/styles.css">
     <!--endinject-->
     <!--inject:js-->
+    <script src="/js/main.js"></script>
     <!--endinject-->
+    <link href="https://fonts.googleapis.com/css?family=Hind|Montserrat" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>Sample Address Book</h1>
+    <div class="titleDiv">
+        <h1>Sample Address Book</h1>
+    </div>
     <br/>
     <div class="row">
         <div class="col-lg-5">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title">
+                    <div class="panel-title titleText">
                         Add A Contact
                     </div>
                 </div>
@@ -57,7 +61,7 @@
                         </div>
                         <div class="form-group"> 
                             <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-default" id="btnSave">Save Contact</button>
+                            <button type="submit" class="btn btn-primary" id="btnSave">Save Contact</button>
                             </div>
                         </div>
                     </form>
@@ -65,20 +69,29 @@
             </div>
         </div>
         <div class="col-lg-7">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title">
+                    <div class="panel-title titleText">
                         Contact List
                     </div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body infoDiv">
                 <center>All information is pulled from MongoDB</center>
                 </div>
-                <ul class="list-group">
+                <ul class="list-group contacts">
                     <% for(var i = 0; i < person.length; i++) { %>
-                        <li class="list-group-item" style="padding:0;">
-                            <div style="padding: 10px;">
-                                <div style="position: absolute; top: 0; right: 0; background-color: gainsboro; height: 26px; width: 30px; text-align: center;">x</div>
+                        <li class="list-group-item contact" style="padding:0;">
+                            <div style="padding: 15px;">
+                                <div class="closeButton" id="">
+                                    <button type="submit" id="btnDel">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                                <div class="editButton">
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </div>
                                 <p><strong>Name:</strong> <%= person[i].name %></p>
                                 <p><strong>Email:</strong> <%= person[i].email %></p>
                                 <p><strong>Contact No:</strong> <%= person[i].contact %></p>
@@ -86,11 +99,10 @@
                             </div>
                         </li>
                     <%}%>
-
                 </ul>
             </div>
         </div>
     </div>
-</div>t
+</div>
 </body>
 </html>

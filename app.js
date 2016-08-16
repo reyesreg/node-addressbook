@@ -47,3 +47,7 @@ app.post('/', function(req, res) {
         });
     });
 });
+
+app.delete('/quotes', function(req, res) {
+  
+});
