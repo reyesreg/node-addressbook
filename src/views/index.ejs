@@ -78,19 +78,25 @@
                 <div class="panel-body infoDiv">
                 <center>All information is pulled from MongoDB</center>
                 </div>
-                <ul class="list-group contacts">
+                <ul class="list-group">
                     <% for(var i = 0; i < person.length; i++) { %>
-                        <li class="list-group-item contact" style="padding:0;">
+                        <li class="list-group-item" style="padding:0;">
                             <div style="padding: 15px;">
-                                <div class="closeButton" id="">
-                                    <button type="submit" id="btnDel">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
+                                <div class="closeButton">
+                                    <form action="/del" method="post">
+                                        <button type="submit" id="">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <input type="hidden" name="delID" value="<%= person[i]._id %>"/>
+                                    </form>
                                 </div>
                                 <div class="editButton">
-                                    <button type="submit">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </button>
+                                    <form action="/edit" method="post">
+                                        <button type="submit">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
+                                        <input type="hidden" name="editID" value="<%= person[i]._id %>"/>
+                                    </form>
                                 </div>
                                 <p><strong>Name:</strong> <%= person[i].name %></p>
                                 <p><strong>Email:</strong> <%= person[i].email %></p>
