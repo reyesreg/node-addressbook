@@ -58,18 +58,32 @@ app.post('/del', function (req, res) {
         collection.findOneAndDelete(
             {
                 _id: objectId
-            }, function (err, results) {
+            },
+            function (err, results) {
                 res.redirect('/');
             });
     });
+});
 
-    // mongodb.connect(url, function (err, db) {
-    //     var collection = db.collection('addressbook');
-    //     collection.findOneAndDelete({}, {
-    //         _id: req.body.delID.ObjectID()
-    //     },
-    //         function (err, results) {
-    //             res.send('results');
-    //         });
-    // });
+app.post('/edit', function (req, res) {
+    var url = 'mongodb://localhost:27017/addressbookApp';
+    var objectId = new ObjectID(req.body.contactEditID);
+
+    mongodb.connect(url, function (err, db) {
+        var collection = db.collection('addressbook');
+        collection.findOneAndUpdate(
+            {
+                _id: objectId
+            }, {
+                $set: {
+                    name: req.body.nameEdit,
+                    email: req.body.emailEdit,
+                    contact: req.body.contactEdit,
+                    address:req.body.addressEdit
+                }
+            }, {},
+            function (err, results) {
+                res.redirect('/');
+            });
+    });
 });

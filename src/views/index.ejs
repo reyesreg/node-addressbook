@@ -14,16 +14,16 @@
     <!--inject:css-->
     <link rel="stylesheet" href="/css/styles.css">
     <!--endinject-->
-    <!--inject:js-->
-    <script src="/js/main.js"></script>
-    <!--endinject-->
     <link href="https://fonts.googleapis.com/css?family=Hind|Montserrat" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="titleDiv">
-        <h1>Sample Address Book</h1>
+<div class="titleDiv">
+    <div class="authorDiv">
+        <h4>@reyesreg</h4>
     </div>
+    <h3>Sample Address Book</h3>
+</div>
+<div class="container">
     <br/>
     <div class="row">
         <div class="col-lg-5">
@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group"> 
                             <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" id="btnSave">Save Contact</button>
+                            <button type="submit" class="btn" id="btnSave">Save Contact</button>
                             </div>
                         </div>
                     </form>
@@ -75,13 +75,13 @@
                         Contact List
                     </div>
                 </div>
-                <div class="panel-body infoDiv">
-                <center>All information is pulled from MongoDB</center>
+                <div class="panel-body infoDiv text-center">
+                    All information is pulled from MongoDB
                 </div>
                 <ul class="list-group">
                     <% for(var i = 0; i < person.length; i++) { %>
-                        <li class="list-group-item" style="padding:0;">
-                            <div style="padding: 15px;">
+                        <li class="list-group-item">
+                            <div class="form-horizontal" style="padding: 15px;">
                                 <div class="closeButton">
                                     <form action="/del" method="post">
                                         <button type="submit" id="">
@@ -91,17 +91,37 @@
                                     </form>
                                 </div>
                                 <div class="editButton">
-                                    <form action="/edit" method="post">
-                                        <button type="submit">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                        <input type="hidden" name="editID" value="<%= person[i]._id %>"/>
-                                    </form>
+                                    <button id="<%= person[i]._id %>" class="btnEdit">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
                                 </div>
-                                <p><strong>Name:</strong> <%= person[i].name %></p>
-                                <p><strong>Email:</strong> <%= person[i].email %></p>
-                                <p><strong>Contact No:</strong> <%= person[i].contact %></p>
-                                <p><strong>Address:</strong> <%= person[i].address %></p>
+                                <!--
+                                <p><strong>Name:</strong> <span class="info" id="name_<%= person[i]._id %>"><%= person[i].name %></span></p>
+                                -->
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2">Name</label>
+                                    <div class="col-lg-9">
+                                        <input id="name_<%= person[i]._id %>" value="<%= person[i].name %>" type="text" class="form-control" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2">Email</label>
+                                    <div class="col-lg-9">
+                                        <input id="email_<%= person[i]._id %>" value="<%= person[i].email %>" type="text" class="form-control" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2">Contact No</label>
+                                    <div class="col-lg-9">
+                                        <input id="contact_<%= person[i]._id %>" value="<%= person[i].contact %>" type="text" class="form-control" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2">Address</label>
+                                    <div class="col-lg-9">
+                                        <textarea rows="3" class="form-control" id="address_<%= person[i]._id %>" readonly><%= person[i].address %></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     <%}%>
@@ -110,5 +130,57 @@
         </div>
     </div>
 </div>
+<div id="editDiv">
+        <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title titleText">
+                        Edit Contact
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="closeButton" id="closeEditButton">
+                        <button>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                    <form action="/edit" class="form-horizontal" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="nameEdit" id="nameEdit"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" name="emailEdit" id="emailEdit"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="contact">Contact:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="contactEdit" id="contactEdit"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="address">Address:</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="addressEdit" id="addressEdit" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group"> 
+                            <div class="col-sm-offset-3 col-sm-10">
+                            <button type="submit" class="btn" id="btnEdit">Update</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="contactEditID" name="contactEditID" value=""/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--inject:js-->
+    <script src="/js/main.js"></script>
+    <!--endinject-->
 </body>
 </html>
